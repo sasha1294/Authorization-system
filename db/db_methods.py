@@ -49,7 +49,7 @@ def update_nickname(email: str, password: str, new_nickname: str):
 def update_email(nickname: str, password: str, new_email: str):
     try:
         update_obj = (update(Users).where(Users.email == nickname and Users.password == password)
-                      .values({"nickname": new_email}))
+                      .values({"email": new_email}))
         session.execute(update_obj)
         session.commit()
         session.close()
