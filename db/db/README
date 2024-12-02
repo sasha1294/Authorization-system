@@ -1,0 +1,20 @@
+#files
+db_env - data base config file.
+forms - table with db user model.
+config - ".env" initialisation and engin config.
+run - start db function, who create db.
+db_methods - list of functions, who need for using db.
+
+#packeges
+psycopg2
+alembic
+pydantic
+sqlalchemy
+
+You NEED install postgresql (Windows - https://www.enterprisedb.com/postgresql-tutorial-resources-training-1?uuid=69f95902-b451-4735-b7e4-1b62209d4dfd&campaignId=postgres_rc_17)
+AND change .env configuration file for you system settings.
+
+This if you change db forms
+#command for upgrade migration
+alembic revision --autogenerate
+alembic upgrade head
