@@ -33,7 +33,7 @@
 
         if (formTitle.textContent === 'Sign in') {
             formTitle.textContent = 'Create account';
-            authForm.action = '/register';
+            authForm.action = '/users';
             authForm.innerHTML = `
                 <input type="text" name="username" id="username" placeholder="Name" required>
                 <input type="email" name="email" id="email" placeholder="Email" required>
@@ -300,7 +300,7 @@
             toggleButton.textContent = 'Login';
         } else {
             formTitle.textContent = 'Sign in';
-            authForm.action = '/login';
+            authForm.action = '/users';
             authForm.innerHTML = `
                 <input type="text" name="username" placeholder="Name" required>
                 <input type="password" name="password" placeholder="Password" required>

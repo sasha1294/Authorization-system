@@ -17,8 +17,19 @@ h2 {
     margin-bottom: 20px;
     text-align: center;
 }
-input, select {
+p {
+    margin-bottom: 20px;
+    text-align: center;
+}
+input[type="text"], input[type="password"], input[type="email"], input[type="tel"]{
     width: 95%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+select{
+    width: 100%;
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #ccc;
