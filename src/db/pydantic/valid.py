@@ -1,17 +1,20 @@
 from pydantic import BaseModel
+from pydantic import EmailStr
+from pydantic_extra_types.phone_numbers import PhoneNumber
 
-class User_model(BaseModel):
+class User(BaseModel):
     name: str
     password: str
-    phone_number: int
+    phone_number: PhoneNumber
     country: str
-    email: str
+    email: EmailStr
 
-class Output_data(BaseModel):
+
+class OutputData(BaseModel):
     message: str
     id: int
     username: str
-    email: str
-    phone: int
+    email: EmailStr
+    phone: PhoneNumber
     password: str
     country: str

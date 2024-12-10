@@ -1,22 +1,25 @@
+from celery.bin.result import result
+from pydantic_extra_types.phone_numbers import PhoneNumber
+
+from fastapi import HTTPException, status
 from src.db.shemas.forms import Users
 from sqlalchemy import update, select
 from src.db.config.db_env import session
-import asyncio
 
-#all data states: nickname, country, phone_number, password
-
-async def set(email:str, nickname:str, password:str, country:str, phone_number:int):
+async def create_user(data: Users):
     try:
-        user = Users(nickname=nickname,
-                password=password,
-                country=country,
-                phone_number=phone_number,
-                email=email)
+        user = Users(name=data.name,
+                password=data.password,
+                country=data.country,
+                phone_number=data.phone_number,
+                email=data.email)
         session.add(user)
         await session.commit()
+        return "Success"
 
     except Exception as e:
-        print(e)
+        return HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
+                             detail=str(e))
 
 
 async def update_password(email: str, new_password: str):
