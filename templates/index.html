@@ -35,11 +35,11 @@
             formTitle.textContent = 'Create account';
             authForm.action = '/users';
             authForm.innerHTML = `
-                <input type="text" name="username" id="username" placeholder="Name" required>
-                <input type="email" name="email" id="email" placeholder="Email" required>
-                <input type="tel" name="phone" id="phone" placeholder="Phone" required>
-                <input type="password" name="password" id="password" placeholder="Password" required>
-                <select class="form-select" autocomplete="country" id="country" name="country" required>
+                <input type="text" name="username" id="usernameInput" placeholder="Name" required>
+                <input type="email" name="email" id="emailInput" placeholder="Email" required>
+                <input type="tel" name="phone" id="phoneInput" placeholder="Phone" required>
+                <input type="password" name="password" id="passwordInput" placeholder="Password" required>
+                <select class="form-select" autocomplete="country" id="countryInput" name="country" required>
                     <option value="">Country</option>
                     <option value="AF">Afghanistan</option>
                     <option value="AX">Åland Islands</option>
@@ -325,7 +325,7 @@
 
             console.log(data)
 
-            fetch('http://localhost:8000/', {
+            fetch('http://localhost:8000/users', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -341,6 +341,5 @@
             });
         });
 </script>
-
 </body>
 </html>
