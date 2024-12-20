@@ -35,11 +35,11 @@
             formTitle.textContent = 'Create account';
             authForm.action = '/users';
             authForm.innerHTML = `
-                <input type="text" name="username" id="username" placeholder="Name" required>
-                <input type="email" name="email" id="email" placeholder="Email" required>
-                <input type="tel" name="phone" id="phone" placeholder="Phone" required>
-                <input type="password" name="password" id="password" placeholder="Password" required>
-                <select class="form-select" autocomplete="country" id="country" name="country" required>
+                <input type="text" name="username" id="usernameInput" placeholder="Name" required>
+                <input type="email" name="email" id="emailInput" placeholder="Email" required>
+                <input type="tel" name="phone" id="phoneInput" placeholder="Phone" required>
+                <input type="password" name="password" id="passwordInput" placeholder="Password" required>
+                <select class="form-select" autocomplete="country" id="countryInput" name="country" required>
                     <option value="">Country</option>
                     <option value="AF">Afghanistan</option>
                     <option value="AX">Åland Islands</option>
@@ -310,34 +310,36 @@
             toggleButton.textContent = 'Sign up';
         }
     });
-    document.getElementById('registration-form').onsubmit = async (e) => {
-    e.preventDefault();
+    const output=document.getElementById('auth-form')
+    console.log(output)
+    document.getElementById('auth-form').addEventListener('submit', function(event) {
+            event.preventDefault();
 
-    const username = document.getElementById('username').value;
-    const email = document.getElementById('email').value;
-    const phone = document.getElementById('phone').value;
-    const password = document.getElementById('password').value;
-    const country = document.getElementById('country').value;
+            const data = {
+                username: document.getElementById('usernameInput').value,
+                password: document.getElementById('passwordInput').value,
+                email: document.getElementById('emailInput').value,
+                phone: document.getElementById('phoneInput').value,
+                country: document.getElementById('countryInput').value
+            };
 
-    const response = await fetch('/users/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, email })
-    });
+            console.log(data)
 
-    const data = await response.json();
-
-    const messageDiv = document.getElementById('message');
-
-    if (response.ok) {
-        messageDiv.innerText = "Пользователь успешно зарегистрирован!";
-        messageDiv.style.color = "green";
-    } else {
-        messageDiv.innerText = data.detail || "Ошибка регистрации";
-        messageDiv.style.color = "red";
-    }
-};
+            fetch('http://localhost:8000/users', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('response').innerText = data.message;
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        });
 </script>
-
 </body>
 </html>
