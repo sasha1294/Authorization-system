@@ -21,7 +21,7 @@
         <a href="#" id="toggle-button">Sign up</a>
     </div>
 </div>
-
+<div id = "response"></div>
 <script>
     const toggleButton = document.getElementById('toggle-button');
     const authForm = document.getElementById('auth-form');
@@ -325,7 +325,7 @@
 
             console.log(data)
 
-            fetch('http://localhost:8000/users', {
+            fetch('http://127.0.0.2:8000/users', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
